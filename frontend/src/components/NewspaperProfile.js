@@ -3,6 +3,8 @@ import axios from "axios";
 import { useNavigate, useLocation } from "react-router-dom";
 import { BASE_URL } from "../utils/constants";
 import { useParams } from "react-router-dom";
+import { Stack, Button, Grid } from "@mui/material";
+import MediaCard from "./MediaCard";
 
 export const NewspaperProfile = () => {
   const navigate = useNavigate();
@@ -23,30 +25,47 @@ export const NewspaperProfile = () => {
 
   return (
     <div>
-      <h1>{newspaperNameState} Profile</h1>
-      {newspaperId > 1 && <button
-        onClick={() =>
-          navigate(`/newspaper/${newspaperId}/article/add`, {
-            state: { newspaperName: newspaperNameState },
-          })
-        }
+      <Stack
+        direction="row"
+        spacing={2}
+        justifyContent="space-between"
+        alignItems="center"
+        px={2}
       >
-        Add article
-      </button>}
+        <h1>{newspaperNameState} Profile</h1>
+        {newspaperId > 1 && (
+          <Button
+            variant="contained"
+            onClick={() =>
+              navigate(`/newspaper/${newspaperId}/article/add`, {
+                state: { newspaperName: newspaperNameState },
+              })
+            }
+            style={{ height: 40 }}
+          >
+            Add article
+          </Button>
+        )}
+      </Stack>
+
+      <Grid container style={{ gap: 25 }} justifyContent="center">
       {articles &&
         articles.map((article) => (
           <div key={article.id}>
-            <h2
-              onClick={() =>
-                navigate(
-                  `/newspaper/${article.newspaperId}/article/${article.id}`
-                )
-              }
-            >
-              {article.title}
-            </h2>
+            <Grid item spacing={2}>
+            <MediaCard
+                  title={article.title}
+                  content={article.content}
+                  imageUrl={article.imageUrl}
+                  onButtonClick={() =>
+                    navigate(
+                      `/newspaper/${article.newspaperId}/article/${article.id}`
+                    )}
+                />
+            </Grid>
           </div>
         ))}
+        </Grid>
     </div>
   );
 };

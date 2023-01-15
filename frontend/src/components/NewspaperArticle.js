@@ -2,6 +2,7 @@ import React from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { BASE_URL } from "../utils/constants";
+import { Stack, Typography } from "@mui/material";
 
 export const NewspaperArticle = () => {
   const { newspaperId, articleId } = useParams();
@@ -21,14 +22,25 @@ export const NewspaperArticle = () => {
 
   return (
     <div>
-      <h1>Newspaper Article</h1>
-        {article && (
-            <>
-                <img src={article.imageUrl} alt={article.title} />
-                <h2>{article.title}</h2>
-                <p>{article.content}</p>
-            </>
-        )}
+      <Stack direction="row" justifyContent="space-around" mt={2}>
+        <h1>{article?.title}</h1>
+      </Stack>
+      {article && (
+        <>
+          <Stack direction="row" justifyContent="space-around">
+            <img
+              src={article.imageUrl}
+              alt={article.title}
+              style={{ maxWidth: 600 }}
+            />
+          </Stack>
+          <Stack direction="row" justifyContent="space-around" mt={2}>
+            <Typography variant="body1" gutterBottom style={{ maxWidth: 800 }}>
+              {article?.content}
+            </Typography>
+          </Stack>
+        </>
+      )}
     </div>
   );
 };
