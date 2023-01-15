@@ -14,6 +14,7 @@ namespace BlogService.Profiles
         {
             CreateMap<Blog, BlogReadDto>();
             CreateMap<BlogCreateDto, Blog>();
+            CreateMap<BlogReadDto, BlogPublishedDto>();
         }
     }
 }

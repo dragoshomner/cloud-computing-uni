@@ -9,7 +9,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using NewspaperService.AsyncDataServices;
 using NewspaperService.Data;
+using NewspaperService.EventProcessing;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,6 +35,9 @@ namespace NewspaperService
                     opt.UseSqlServer(Configuration.GetConnectionString("NewspapersConn")));
             services.AddScoped<INewspaperRepository, NewspaperRepository>();
             services.AddControllers();
+
+            services.AddHostedService<MessageBusSubscriber>();
+            services.AddSingleton<IEventProcessor, EventProcessor>();
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddSwaggerGen(c =>
             {

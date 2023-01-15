@@ -1,3 +1,4 @@
+using BlogService.AsyncDataServices;
 using BlogService.Data;
 using BlogService.Repositories;
 using BlogService.Repositories.Interfaces;
@@ -37,6 +38,7 @@ namespace CloudComputing
 
             services.AddScoped<IBlogRepository, BlogRepository>();
             services.AddHttpClient<INewspaperDataClient, HttpNewspaperDataClient>();
+            services.AddSingleton<IMessageBusClient, MessageBusClient>();
 
             services.AddControllers();
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());

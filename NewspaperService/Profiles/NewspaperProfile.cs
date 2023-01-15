@@ -17,6 +17,8 @@ namespace NewspaperService.Profiles
             CreateMap<NewspaperCreateDto, Newspaper>();
             CreateMap<BlogCreateDto, Blog>();
             CreateMap<Blog, BlogReadDto>();
+            CreateMap<BlogPublishedDto, Blog>()
+                .ForMember(dest => dest.ExternalID, opt => opt.MapFrom(src => src.Id));
         }
     }
 }
