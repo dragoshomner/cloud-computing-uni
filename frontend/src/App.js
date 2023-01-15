@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import { AddBlogArticle } from "./components/AddBlogArticle";
+import { AddNewspaper } from "./components/AddNewspaper";
 import { AddNewspaperArticle } from "./components/AddNewspaperArticle";
 import { Article } from "./components/Article";
 import { Blog } from "./components/Blog";
@@ -25,6 +26,7 @@ function App() {
             <Route exact path="/blog/add" element={<AddBlogArticle />}></Route>
             <Route path="/article/:articleId" element={<Article />}></Route>
             <Route exact path="/newspapers" element={<Newspapers />}></Route>
+            <Route exact path="/newspaper/add" element={<AddNewspaper />}></Route>
             <Route exact path="/newspaper/:newspaperId" element={<NewspaperProfile />}></Route>
             <Route exact path="/newspaper/:newspaperId/article/:articleId" element={<NewspaperArticle />}></Route>
             <Route exact path="/newspaper/:newspaperId/article/add" element={<AddNewspaperArticle />}></Route>

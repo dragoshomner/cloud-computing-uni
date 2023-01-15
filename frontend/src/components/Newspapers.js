@@ -20,21 +20,21 @@ export const Newspapers = () => {
   return (
     <div>
       <h1>Newspapers</h1>
+      <button onClick={() => navigate(`/newspaper/add`)}>Add newspaper</button>
       {newspapers &&
-        newspapers
-          .map((newspaper) => (
-            <div key={newspaper.id}>
-              <h2
-                onClick={() =>
-                  navigate(`/newspaper/${newspaper.id}`, {
-                    state: { newspaperName: newspaper.name },
-                  })
-                }
-              >
-                {newspaper.name}
-              </h2>
-            </div>
-          ))}
+        newspapers.map((newspaper) => (
+          <div key={newspaper.id}>
+            <h2
+              onClick={() =>
+                navigate(`/newspaper/${newspaper.id}`, {
+                  state: { newspaperName: newspaper.name },
+                })
+              }
+            >
+              {newspaper.name}
+            </h2>
+          </div>
+        ))}
     </div>
   );
 };
