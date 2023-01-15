@@ -19,7 +19,6 @@ namespace CloudComputing.Controllers
     {
         private readonly IBlogRepository _repository;
         private readonly IMapper _mapper;
-        private readonly INewspaperDataClient _newspaperDataClient;
         private readonly IMessageBusClient _messageBusClient;
 
         public BlogController(
@@ -30,7 +29,6 @@ namespace CloudComputing.Controllers
         {
             _repository = repository;
             _mapper = mapper;
-            _newspaperDataClient = newspaperDataClient;
             _messageBusClient = messageBusClient;
         }
 
@@ -66,24 +64,18 @@ namespace CloudComputing.Controllers
 
             var blogReadDto = _mapper.Map<BlogReadDto>(blogModel);
 
-            try
+            if (blogCreateDto.IsPublic == true)
             {
-                await _newspaperDataClient.SendBlogToNewspaper(blogReadDto);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"--> Error SendBlogToNewspaper: {ex.Message}");
-            }
-
-            try
-            {
-                var blogPublishedDto = _mapper.Map<BlogPublishedDto>(blogReadDto);
-                blogPublishedDto.Event = "Blog_Published";
-                _messageBusClient.PublishNewBlog(blogPublishedDto);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"--> Error PublishBlogToNewspaper: {ex.Message}");
+                try
+                {
+                    var blogPublishedDto = _mapper.Map<BlogPublishedDto>(blogReadDto);
+                    blogPublishedDto.Event = "Blog_Published";
+                    _messageBusClient.PublishNewBlog(blogPublishedDto);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"--> Error PublishBlogToNewspaper: {ex.Message}");
+                }
             }
 
             return CreatedAtRoute(nameof(GetBlogById), new { Id = blogReadDto.Id }, blogReadDto);
