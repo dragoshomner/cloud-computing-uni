@@ -4,10 +4,12 @@ import { useNavigate } from "react-router-dom";
 import { BASE_URL } from "../utils/constants";
 import { Stack, Button, Grid } from "@mui/material";
 import MediaCard from "./MediaCard";
+import { SubscribeForm } from "./SubscribeForm";
 
 export const Blog = () => {
   const navigate = useNavigate();
   const [articles, setArticles] = React.useState();
+  const showSubscribeForm = localStorage.getItem("subscribed") !== "true";
 
   React.useEffect(() => {
     getArticles();
@@ -21,6 +23,11 @@ export const Blog = () => {
 
   return (
     <div>
+      {showSubscribeForm && (
+        <div mb={2} style={{ backgroundColor: "#FAFAFA", padding: 10 }}>
+          <SubscribeForm />
+        </div>
+      )}
       <Stack
         direction="row"
         spacing={2}
