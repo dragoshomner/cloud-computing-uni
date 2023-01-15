@@ -5,7 +5,11 @@ VisualStudioVersion = 16.0.33214.272
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlogService", "BlogService\BlogService.csproj", "{F830383D-9F67-4DA7-AFCF-35DA2D3928E5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewspaperService", "NewspaperService\NewspaperService.csproj", "{56C107F9-CD6C-45AF-905B-BF85CB3671D1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NewspaperService", "NewspaperService\NewspaperService.csproj", "{56C107F9-CD6C-45AF-905B-BF85CB3671D1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SubscribeService", "SubscribeService\SubscribeService.csproj", "{0210A11C-741B-45CC-87E3-0D1B8F4217D7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContactService", "ContactService\ContactService.csproj", "{F2BBA4AC-D317-4A3A-A7F9-F87F922879CA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +25,14 @@ Global
 		{56C107F9-CD6C-45AF-905B-BF85CB3671D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{56C107F9-CD6C-45AF-905B-BF85CB3671D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{56C107F9-CD6C-45AF-905B-BF85CB3671D1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0210A11C-741B-45CC-87E3-0D1B8F4217D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0210A11C-741B-45CC-87E3-0D1B8F4217D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0210A11C-741B-45CC-87E3-0D1B8F4217D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0210A11C-741B-45CC-87E3-0D1B8F4217D7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F2BBA4AC-D317-4A3A-A7F9-F87F922879CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F2BBA4AC-D317-4A3A-A7F9-F87F922879CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F2BBA4AC-D317-4A3A-A7F9-F87F922879CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F2BBA4AC-D317-4A3A-A7F9-F87F922879CA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

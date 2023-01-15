@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: subscription-deploy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: subscriptionservice
+  template:
+    metadata:
+      labels:
+        app: subscriptionservice
+    spec:
+      containers:
+        - name: subscriptionservice
+          image: dragoshomner/subscriptionservice:latest
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: subscription-clusterip-srv
+spec:
+  type: ClusterIP
+  selector:
+    app: subscriptionservice
+  ports:
+  - name: subscriptionservice
+    protocol: TCP
+    port: 80
+    targetPort: 80

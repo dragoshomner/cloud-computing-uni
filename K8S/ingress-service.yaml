@@ -25,3 +25,17 @@ spec:
                 name: newspaper-clusterip-srv
                 port:
                   number: 80
+          - path: /api/subscribe
+            pathType: Prefix
+            backend:
+              service:
+                name: subscription-clusterip-srv
+                port:
+                  number: 80
+          - path: /api/contact
+            pathType: Prefix
+            backend:
+              service:
+                name: contact-clusterip-srv
+                port:
+                  number: 80
