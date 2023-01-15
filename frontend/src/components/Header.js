@@ -40,6 +40,11 @@ export const Header = () => {
                 Newspapers
               </Button>
             </Link>
+            <Link to="/contact" style={{ textDecoration: "none" }}>
+              <Button sx={{ my: 2, color: "white", display: "block" }}>
+                Contact
+              </Button>
+            </Link>
           </Box>
         </Toolbar>
       </Container>

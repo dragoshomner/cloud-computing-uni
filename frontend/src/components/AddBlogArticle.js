@@ -27,7 +27,7 @@ export const AddBlogArticle = () => {
 
       <Stack direction="row" justifyContent="space-around" mt={2}>
         <TextField
-          label="Content"
+          label="Image Url"
           variant="outlined"
           style={{ width: "50%", marginBottom: 10 }}
           onChange={(e) => setArticle({ ...article, imageUrl: e.target.value })}
@@ -36,7 +36,7 @@ export const AddBlogArticle = () => {
 
       <Stack direction="row" justifyContent="space-around" mt={2}>
         <TextField
-          label="Image URL"
+          label="Content"
           variant="outlined"
           style={{ width: "50%", marginBottom: 10 }}
           onChange={(e) => setArticle({ ...article, content: e.target.value })}

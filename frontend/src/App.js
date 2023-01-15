@@ -9,6 +9,7 @@ import { NewspaperProfile } from "./components/NewspaperProfile";
 import { Newspapers } from "./components/Newspapers";
 import { Header } from "./components/Header";
 import { Container } from "@mui/material";
+import { Contact } from "./components/Contact";
 
 function App() {
   return (
@@ -45,6 +46,11 @@ function App() {
                 exact
                 path="/newspaper/:newspaperId/article/add"
                 element={<AddNewspaperArticle />}
+              ></Route>
+              <Route
+                exact
+                path="/contact"
+                element={<Contact />}
               ></Route>
             </Routes>
           </div>
