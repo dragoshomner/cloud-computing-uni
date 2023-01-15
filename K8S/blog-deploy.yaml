@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: blog-deploy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: blogservice
+  template:
+    metadata:
+      labels:
+        app: blogservice
+    spec:
+      containers:
+        - name: blogservice
+          image: dragoshomner/blogservice:latest
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: blog-clusterip-srv
+spec:
+  type: ClusterIP
+  selector:
+    app: blogservice
+  ports:
+  - name: blogservice
+    protocol: TCP
+    port: 80
+    targetPort: 80

@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using BlogService.Dtos;
 using BlogService.Repositories.Interfaces;
+using BlogService.SyncDataServices.Http;
 using CloudComputing.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -17,13 +18,16 @@ namespace CloudComputing.Controllers
     {
         private readonly IBlogRepository _repository;
         private readonly IMapper _mapper;
+        private readonly INewspaperDataClient _newspaperDataClient;
 
         public BlogController(
             IBlogRepository repository,
-            IMapper mapper)
+            IMapper mapper,
+            INewspaperDataClient newspaperDataClient)
         {
             _repository = repository;
             _mapper = mapper;
+            _newspaperDataClient = newspaperDataClient;
         }
 
         // GET: BlogController
@@ -57,6 +61,15 @@ namespace CloudComputing.Controllers
             _repository.Save();
 
             var blogReadDto = _mapper.Map<BlogReadDto>(blogModel);
+
+            try
+            {
+                await _newspaperDataClient.SendBlogToNewspaper(blogReadDto);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"--> Error SendBlogToNewspaper: {ex.Message}");
+            }
 
             return CreatedAtRoute(nameof(GetBlogById), new { Id = blogReadDto.Id }, blogReadDto);
         }

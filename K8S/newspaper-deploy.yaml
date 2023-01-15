@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: newspaper-deploy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: newspaperservice
+  template:
+    metadata:
+      labels:
+        app: newspaperservice
+    spec:
+      containers:
+        - name: newspaperservice
+          image: dragoshomner/newspaperservice:latest
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: newspaper-clusterip-srv
+spec:
+  type: ClusterIP
+  selector:
+    app: newspaperservice
+  ports:
+  - name: newspaperservice
+    protocol: TCP
+    port: 80
+    targetPort: 80

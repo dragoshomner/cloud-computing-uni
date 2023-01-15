@@ -12,26 +12,23 @@ namespace BlogService.Data
 {
     public class InitializeDatabase
     {
-        public static void Run(IApplicationBuilder app, bool isProd)
+        public static void Run(IApplicationBuilder app)
         {
             using (var serviceScope = app.ApplicationServices.CreateScope())
             {
-                SeedData(serviceScope.ServiceProvider.GetService<AppDbContext>(), isProd);
+                SeedData(serviceScope.ServiceProvider.GetService<AppDbContext>());
             }
         }
 
-        private static void SeedData(AppDbContext context, bool isProd)
+        private static void SeedData(AppDbContext context)
         {
-            if (isProd)
+            try
             {
-                try
-                {
-                    context.Database.Migrate();
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine($"--> Migration error: {ex.Message}");
-                }
+                context.Database.Migrate();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"--> Migration error: {ex.Message}");
             }
 
             if (!context.Blogs.Any())
