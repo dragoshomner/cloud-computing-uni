@@ -3,7 +3,6 @@ kind: Deployment
 metadata:
   name: blog-deploy
 spec:
-  replicas: 1
   selector:
     matchLabels:
       app: blogservice
@@ -15,6 +14,13 @@ spec:
       containers:
         - name: blogservice
           image: dragoshomner/blogservice:latest
+          resources:
+          limits:
+            cpu: 200m
+            memory: 500Mi
+          requests:
+            cpu: 100m
+            memory: 200Mi
 ---
 apiVersion: v1
 kind: Service

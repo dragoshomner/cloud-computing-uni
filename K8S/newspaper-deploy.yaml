@@ -3,7 +3,6 @@ kind: Deployment
 metadata:
   name: newspaper-deploy
 spec:
-  replicas: 1
   selector:
     matchLabels:
       app: newspaperservice
@@ -15,6 +14,13 @@ spec:
       containers:
         - name: newspaperservice
           image: dragoshomner/newspaperservice:latest
+          resources:
+          limits:
+            cpu: 200m
+            memory: 500Mi
+          requests:
+            cpu: 100m
+            memory: 200Mi
 ---
 apiVersion: v1
 kind: Service

@@ -3,7 +3,6 @@ kind: Deployment
 metadata:
   name: subscription-deploy
 spec:
-  replicas: 1
   selector:
     matchLabels:
       app: subscriptionservice
@@ -15,6 +14,13 @@ spec:
       containers:
         - name: subscriptionservice
           image: dragoshomner/subscriptionservice:latest
+          resources:
+          limits:
+            cpu: 200m
+            memory: 500Mi
+          requests:
+            cpu: 100m
+            memory: 200Mi
 ---
 apiVersion: v1
 kind: Service
